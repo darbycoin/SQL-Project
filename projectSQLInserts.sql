@@ -4,6 +4,8 @@ create database ecommerce;
 
 use ecommerce;
 
+alter table account ADD FOREIGN KEY (address_id) REFERENCES address(address_id);
+
 create table product
 (
 product_id int primary key auto_increment,
@@ -19,7 +21,7 @@ inventory int default 0
 
 create table category
 (
-category_id int not null primary key	auto_increment,
+category_id int primary key	auto_increment,
 category_name varchar(50) not null
 );
 
@@ -42,7 +44,7 @@ foreign key (subcategory_id) references category(category_id)
 );
 
 CREATE TABLE account (
-customer_id int not null primary key auto_increment,
+customer_id int primary key auto_increment,
 first_name varchar(50) not null,
 last_name varchar(50) not null,
 gender char(1) default 'N',
@@ -54,7 +56,7 @@ password varchar(20) not null
 
 
 CREATE TABLE address (
-address_id int not null primary key auto_increment,
+address_id int  primary key auto_increment,
 street_number int not null,
 civic_number int,
 street_name varchar(50) not null,
