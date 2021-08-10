@@ -563,26 +563,26 @@ INSERT INTO product_category (product_id, category_id) VALUES (39,17);
 INSERT INTO product_category (product_id, category_id) VALUES (40,17);
 
 #20 rows for "order" table
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-11-22', 231.54, 4, 7, 33);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-04-15', 431.89, 1, 3, 31);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-02-22', 31.89, 3, 1, 19);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-04-12', 231.54, 7, 8, 29);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-04-13', 31.89, 11, 22, 21);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-05-11', 131.89, 23, 17, 4);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-06-12', 151.54, 14, 25, 7);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-05-24', 51.89, 5, 26, 1);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-03-20', 73.54, 6, 29, 3);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-03-28', 56.89, 8, 35, 8);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-05-26', 1131.89, 13, 38, 11);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-01-25', 331.89, 21, 42, 21);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-07-24', 231.89, 2, 12, 22);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-08-20', 35.89, 1, 46, 14);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2019-03-28', 52.89, 7, 34, 7);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-09-20', 91.89, 2, 46, 16);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-11-22', 381.54, 5, 58, 27);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-02-21', 22.54, 8, 53, 31);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-02-24', 12.99, 9, 52, 29);
-INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-05-21', 31.54, 10, 51, 2);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-11-22', 224.95, 4, 7, 33);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-04-15', 414.99, 1, 3, 31);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-02-22', 189.98, 3, 1, 19);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-04-12', 34.99, 7, 8, 29);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-04-13', 19.98, 11, 22, 21);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-05-11', 44.97, 23, 17, 4);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-06-12', 41.99, 14, 25, 7);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-05-24',  14.99, 5, 26, 1);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-03-20', 59.96, 6, 29, 3);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-03-28', 14.99, 8, 35, 8);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-05-26', 109.98, 13, 38, 11);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-01-25', 78.99, 21, 42, 21);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-07-24', 144.99, 2, 12, 22);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-08-20', 19.99, 1, 46, 14);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2019-03-28', 44.99, 7, 34, 7);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-09-20', 13.98, 2, 46, 16);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-11-22', 49.99, 5, 58, 27);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-02-21',  59.96, 8, 53, 31);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-02-24', 44.99, 9, 52, 29);
+INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-05-21', 314.99, 10, 51, 2);
 
 #20 rows for "order_detail" table
 INSERT INTO order_detail (order_id, quantity, product_id) VALUES (1, 5, 13);
