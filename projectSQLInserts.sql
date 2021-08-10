@@ -1,10 +1,8 @@
-drop database ecommerce;
+drop database if exists ecommerce;
 
 create database ecommerce;
 
 use ecommerce;
-
-alter table account ADD FOREIGN KEY (address_id) REFERENCES address(address_id);
 
 create table product
 (
@@ -54,6 +52,7 @@ username varchar(20) not null unique,
 password varchar(20) not null
 );
 
+alter table account ADD FOREIGN KEY (address_id) REFERENCES address(address_id);
 
 CREATE TABLE address (
 address_id int  primary key auto_increment,
@@ -479,7 +478,7 @@ INSERT INTO subcategory (category_id, subcategory_id) VALUES (19,19);
 INSERT INTO subcategory (category_id, subcategory_id) VALUES (20,20);
 INSERT INTO subcategory (category_id, subcategory_id) VALUES (21,21);
 
-
+#40 rows for "product" table
 INSERT INTO product (sku_number, product_name, product_description, unit_price, inventory) VALUES (74177529, 'The Book', 'A book that is about books.', 14.99, 12);
 INSERT INTO product (sku_number, product_name, product_description, unit_price, inventory) VALUES (90146004, 'World of Warcraft', 'Computer game', 49.99 , 31);
 INSERT INTO product (sku_number, product_name, product_description, unit_price, color, size, style, inventory) VALUES (67358094, 'Black Sabbath', 'Metal vinyl record', 19.99, 'black', 'LP', '12"', 4);
@@ -520,9 +519,6 @@ INSERT INTO product (sku_number, product_name, product_description, unit_price, 
 INSERT INTO product (sku_number, product_name, product_description, unit_price, color, size, inventory) VALUES (62865478	, 'Office Desk', 'Put things on it', 14.99, 'tan', 'L', 3);
 INSERT INTO product (sku_number, product_name, product_description, unit_price, color, inventory) VALUES (98718057		, 'Barbeque Lighter', 'Great for BBQs', 14.99, 'red', 22);
 INSERT INTO product (sku_number, product_name, product_description, unit_price, inventory) VALUES (42579703		, 'Fertilizer', 'for the pro gardeners', 41.99,  22);
-
-
-
 
 #40 rows for "product_category" table
 INSERT INTO product_category (product_id, category_id) VALUES (1,1);
@@ -566,7 +562,6 @@ INSERT INTO product_category (product_id, category_id) VALUES (38,6);
 INSERT INTO product_category (product_id, category_id) VALUES (39,17);
 INSERT INTO product_category (product_id, category_id) VALUES (40,17);
 
-
 #20 rows for "order" table
 INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-11-22', 231.54, 4, 7, 33);
 INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-04-15', 431.89, 1, 3, 31);
@@ -588,9 +583,6 @@ INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, add
 INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-02-21', 22.54, 8, 53, 31);
 INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-02-24', 12.99, 9, 52, 29);
 INSERT INTO `order` (order_date, total_price, account_id, payment_method_id, address_id) VALUES ('2020-05-21', 31.54, 10, 51, 2);
-
-
-
 
 #20 rows for "order_detail" table
 INSERT INTO order_detail (order_id, quantity, product_id) VALUES (1, 5, 13);
