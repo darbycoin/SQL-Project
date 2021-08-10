@@ -682,6 +682,8 @@ ON `visa_mastercard`
 TO registered_customer; 
 
 #Creates users
+DROP USER IF EXISTS filipem, kevind, NewmanChaney, BenderLawrence, DaleYuli, CastilloIngrid;
+
 CREATE USER filipem
 IDENTIFIED BY '123456';
 
