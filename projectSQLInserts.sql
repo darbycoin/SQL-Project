@@ -711,3 +711,12 @@ TO NewmanChaney, BenderLawrence, DaleYuli, CastilloIngrid;
 # indexes
 CREATE INDEX low_priced_product_index
 ON product (unit_price);
+
+CREATE INDEX order_history
+ON `order` (order_date);
+
+CREATE INDEX regional_or_national_shipping
+ON address (province, country);
+
+CREATE INDEX category_lookup
+on product_category(category_id);
