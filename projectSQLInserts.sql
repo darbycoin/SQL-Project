@@ -720,3 +720,15 @@ ON address (province, country);
 
 CREATE INDEX category_lookup
 on product_category(category_id);
+
+CREATE INDEX inventory_maintenance
+ON product (inventory);
+
+CREATE INDEX product_being_ordered
+ON order_detail(product_id);
+
+CREATE INDEX account_shipping_lookup
+ON `order` (account_id, address_id);
+
+CREATE INDEX payment_address_visa
+ON visa_mastercard (address_id);
