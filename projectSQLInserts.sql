@@ -707,3 +707,7 @@ IDENTIFIED BY 'ZFV43VVW8BS';
 
 GRANT registered_customer
 TO NewmanChaney, BenderLawrence, DaleYuli, CastilloIngrid;
+
+# indexes
+CREATE INDEX low_priced_product_index
+ON product (unit_price);
