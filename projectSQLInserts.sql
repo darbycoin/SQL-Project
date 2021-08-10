@@ -627,3 +627,81 @@ INSERT INTO cart_item (account_id, product_id, quantity) VALUES (17, 24, 8);
 INSERT INTO cart_item (account_id, product_id, quantity) VALUES (18, 35, 7);
 INSERT INTO cart_item (account_id, product_id, quantity) VALUES (19, 38, 3);
 INSERT INTO cart_item (account_id, product_id, quantity) VALUES (20, 2, 1);
+
+#Creates roles
+DROP ROLE IF EXISTS administrator, registered_customer;
+
+CREATE ROLE administrator, registered_customer;
+
+GRANT ALL
+ON *
+TO administrator;
+
+GRANT SELECT, UPDATE
+ON `account`
+TO registered_customer; 
+
+GRANT SELECT, UPDATE
+ON `address`
+TO registered_customer; 
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON `cart_item`
+TO registered_customer; 
+
+GRANT SELECT
+ON `giftcard`
+TO registered_customer; 
+
+GRANT SELECT
+ON `order`
+TO registered_customer; 
+
+GRANT SELECT
+ON `order_detail`
+TO registered_customer; 
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON `paypal`
+TO registered_customer; 
+
+GRANT SELECT
+ON `product`
+TO registered_customer; 
+
+GRANT SELECT
+ON `subcategory`
+TO registered_customer; 
+
+GRANT SELECT
+ON `product_category`
+TO registered_customer; 
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON `visa_mastercard`
+TO registered_customer; 
+
+#Creates users
+CREATE USER filipem
+IDENTIFIED BY '123456';
+
+CREATE USER kevind
+IDENTIFIED BY '123456';
+
+GRANT administrator
+TO filipem, kevind;
+
+CREATE USER NewmanChaney
+IDENTIFIED BY 'OBO30SDN9UD';
+
+CREATE USER BenderLawrence
+IDENTIFIED BY 'QON38BEE7TR';
+
+CREATE USER DaleYuli
+IDENTIFIED BY 'CEC02CDP5KP';
+
+CREATE USER CastilloIngrid
+IDENTIFIED BY 'ZFV43VVW8BS';
+
+GRANT registered_customer
+TO NewmanChaney, BenderLawrence, DaleYuli, CastilloIngrid;
