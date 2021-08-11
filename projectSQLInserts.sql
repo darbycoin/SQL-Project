@@ -816,3 +816,34 @@ DROP VIEW IF EXISTS admin_account;
 CREATE VIEW admin_account AS
 SELECT customer_id, first_name, last_name, gender, date_of_birth, phone, username
 FROM `account`;
+
+#Triggers
+delimiter //
+
+create trigger update_inventory_after_order 
+before insert on `order_detail`
+for each row
+
+begin
+
+declare actual_inventory int;
+
+select inventory into actual_inventory from product where product_id = new.product_id;
+
+if (select inventory from product where product_id = new.product_id) < new.quantity
+then
+signal sqlstate '45000' SET MESSAGE_TEXT = 'There is not enough inventory for this order.';
+else
+update product set inventory = (actual_inventory - new.quantity) where product_id = new.product_id;
+end if; 
+
+end //
+
+delimiter ;
+
+/* QUERIES TO CHECK THE TRIGGER ABOVE
+select inventory,product_id from product where product_id = 15;
+select * from order_detail order by order_id desc limit 1;
+INSERT INTO order_detail (order_id, quantity, product_id) VALUES (20, 2, 15);
+INSERT INTO order_detail (order_id, quantity, product_id) VALUES (19, 191, 15);
+*/
