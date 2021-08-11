@@ -736,66 +736,83 @@ IDENTIFIED BY 'ZFV43VVW8BS';
 GRANT registered_customer
 TO NewmanChaney, BenderLawrence, DaleYuli, CastilloIngrid;
 
-# indexes
-CREATE INDEX low_priced_product_index
-ON product (unit_price);
-
-# Finding low priced items, common ecommerce filter
-SELECT PRODUCT_ID, PRODUCT_NAME FROM PRODUCT 
-WHERE unit_price <= 19.99;
-
-CREATE INDEX order_history
-ON `order` (order_date);
-
-# Selecting orders placed between a certain time period
-SELECT account_id, order_id from `order`
-WHERE order_date BETWEEN '2020-04-08' AND '2020-12-31';
-
-CREATE INDEX regional_or_national_shipping
-ON address (province, country);
-
-# Selecting account_ids that meet requirements for national and/or regional shipping
-SELECT account_id from address where country = 'CA';
-select account_id from address where country = 'CA' AND province IN ('QC', 'ON');
-
-CREATE INDEX category_lookup
-on product_category(category_id);
-
-# Finding all product IDs of certain categories
-select product_id from product_category where category_id IN (1,2,3);
-
-
-CREATE INDEX inventory_maintenance
-ON product (inventory);
-
-# Selecting the product name and ID which has low inventory
-SELECT product_name, product_id FROM product
-WHERE INVENTORY <= 3;
-
-CREATE INDEX account_shipping_lookup
-ON `order` (account_id, address_id);
-
-# Finding the address assosciated with an order
-select * from account where customer_id =
-(SELECT address_id from `order` where account_id = 4);
-
-CREATE INDEX payment_address_visa
-ON visa_mastercard (address_id);
-
-# Finding the address assosciated with a payment method, to verify the transaction
-select * from account where customer_id =(
-select address_id from visa_mastercard where payment_method_id = 72);
-
+# Indexes
+# Product look up index
 CREATE INDEX product_search
 ON product (product_name, size, color, style);
 
-# example query to search the store for a certain item
 SELECT * from product
 where product_name LIKE'%laptop%';
 
-# example of a complicated query that would benefit from an index
 SELECT *
 FROM product
 WHERE size = 'L'
 AND color= 'black'
 AND style = 'regular';
+
+# Selecting orders placed between a certain time period
+CREATE INDEX order_history
+ON `order` (order_date);
+
+SELECT account_id, order_id from `order`
+WHERE order_date BETWEEN '2020-04-08' AND '2020-12-31';
+
+# Selecting account_ids that meet requirements for national and/or regional shipping
+CREATE INDEX regional_or_national_shipping
+ON address (province, country);
+
+SELECT account_id from address 
+WHERE country = 'CA'
+AND province IN ('QC', 'ON');
+
+# Finding all product IDs of certain categories
+CREATE INDEX category_lookup
+on product_category(category_id);
+
+SELECT product_id 
+FROM product_category 
+WHERE category_id IN (1,2,3);
+
+# Selecting the product name and ID which has low inventory
+CREATE INDEX inventory_maintenance
+ON product (inventory);
+
+SELECT PRODUCT_NAME, PRODUCT_ID FROM PRODUCT
+WHERE INVENTORY <= 3;
+
+# Finding the address assosciated with an order
+CREATE INDEX account_shipping_lookup
+ON `order` (account_id, address_id);
+
+SELECT * 
+FROM account 
+WHERE customer_id =
+(SELECT address_id 
+FROM `order` 
+WHERE account_id = 4);
+
+# Finding the address assosciated with a payment method
+CREATE INDEX payment_address_visa
+ON visa_mastercard (address_id);
+
+SELECT * 
+FROM account 
+WHERE customer_id =(
+SELECT address_id 
+FROM visa_mastercard 
+WHERE payment_method_id = 72);
+
+
+# Views (not done)
+
+DROP VIEW IF EXISTS registered_customer_product;
+
+CREATE VIEW registered_customer_product AS
+SELECT product_name, product_description, unit_price, color, size, style
+FROM product;
+
+DROP VIEW IF EXISTS admin_account;
+
+CREATE VIEW admin_account AS
+SELECT customer_id, first_name, last_name, gender, date_of_birth, phone, username
+FROM `account`;
