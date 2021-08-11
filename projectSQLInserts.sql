@@ -803,19 +803,95 @@ FROM visa_mastercard
 WHERE payment_method_id = 72);
 
 
-# Views (not done)
 
-DROP VIEW IF EXISTS registered_customer_product;
 
-CREATE VIEW registered_customer_product AS
-SELECT product_name, product_description, unit_price, color, size, style
-FROM product;
+# Admin Views
+# Can select/update everything EXCEPT passwords
 
 DROP VIEW IF EXISTS admin_account;
 
 CREATE VIEW admin_account AS
 SELECT customer_id, first_name, last_name, gender, date_of_birth, phone, username
-FROM `account`;
+FROM `account`
+WITH CHECK OPTION;
+
+# Can select/update everything EXCEPT card number and expiry date
+
+DROP VIEW IF EXISTS admin_visa_mastercard;
+
+CREATE VIEW admin_visa_mastercard AS
+SELECT payment_method_id, holder_name, address_id
+FROM `account`
+WITH CHECK OPTION;
+
+
+
+# Customer Views
+DROP VIEW IF EXISTS customer_account;
+
+CREATE VIEW customer_account AS
+SELECT first_name, last_name, gender, phone, password
+from account
+WITH CHECK OPTION;
+
+
+DROP VIEW IF EXISTS customer_address;
+
+CREATE VIEW customer_address AS
+SELECT street_number, civic_number, street_name, city, province, country, account_id
+from address
+WITH CHECK OPTION;
+
+DROP VIEW IF EXISTS customer_cart_item;
+
+CREATE VIEW customer_cart_item AS
+SELECT product_id, quantity
+from cart_item
+WITH CHECK OPTION;
+
+DROP VIEW IF EXISTS customer_gift_card;
+
+CREATE VIEW customer_gift_card AS
+SELECT bar_code, code
+from giftcard;
+
+DROP VIEW IF EXISTS customer_order;
+
+CREATE VIEW customer_order AS
+SELECT order_id, order_date, total_price;
+
+DROP VIEW IF EXISTS customer_order_detail;
+
+CREATE VIEW customer_order AS
+SELECT order_id, quantity, product_id;
+
+DROP VIEW IF EXISTS customer_paypal;
+
+CREATE VIEW customer_paypal AS
+SELECT email_address
+from paypal
+WITH CHECK OPTION;
+
+DROP VIEW IF EXISTS customer_product;
+
+CREATE VIEW customer_product AS
+SELECT product_name, product_description, unit_price, color, size, style, inventory
+FROM product
+WITH CHECK OPTION;
+
+DROP VIEW IF EXISTS customer_product_category;
+
+CREATE VIEW customer_product_category AS
+SELECT product_id, category_id
+FROM product_category;
+
+DROP VIEW IF EXISTS customer_visa_mastercard;
+
+CREATE VIEW customer_visa_mastercard AS
+SELECT card_number, expiry_date, holder_name
+FROM visa_mastercard
+WITH CHECK OPTION;
+
 
 #Triggers
 delimiter //
