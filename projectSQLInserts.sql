@@ -753,3 +753,10 @@ ON visa_mastercard (address_id);
 
 # Finding the address assosciated with a payment method, to verify the transaction
 select address_id from visa_mastercard where payment_method_id = 72;
+
+CREATE INDEX product_search
+ON product (product_name, size, color, style);
+
+# example query to search the store for a certain item
+SELECT * from product
+where product_name LIKE'%laptop%';
