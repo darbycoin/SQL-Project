@@ -712,23 +712,46 @@ TO NewmanChaney, BenderLawrence, DaleYuli, CastilloIngrid;
 CREATE INDEX low_priced_product_index
 ON product (unit_price);
 
+# Finding low priced items, common ecommerce filter
+SELECT PRODUCT_ID, PRODUCT_NAME FROM PRODUCT 
+WHERE unit_price <= 19.99;
+
 CREATE INDEX order_history
 ON `order` (order_date);
+
+# Selecting orders placed between a certain time period
+SELECT account_id, order_id from `order`
+WHERE order_date BETWEEN '2020-04-08' AND '2020-12-31';
 
 CREATE INDEX regional_or_national_shipping
 ON address (province, country);
 
+# Selecting account_ids that meet requirements for national and/or regional shipping
+SELECT account_id from address where country = 'CA';
+select account_id from address where province IN ('QC', 'ON');
+
 CREATE INDEX category_lookup
 on product_category(category_id);
+
+# Finding all product IDs of certain categories
+select product_id from product_category where category_id IN (1,2,3);
+
 
 CREATE INDEX inventory_maintenance
 ON product (inventory);
 
-CREATE INDEX product_being_ordered
-ON order_detail(product_id);
+# Selecting the product name and ID which has low inventory
+SELECT product_name, product_id FROM product
+WHERE INVENTORY <= 3;
 
 CREATE INDEX account_shipping_lookup
 ON `order` (account_id, address_id);
 
+# Finding the address assosciated with an order
+SELECT address_id from `order` where account_id = 4;
+
 CREATE INDEX payment_address_visa
 ON visa_mastercard (address_id);
+
+# Finding the address assosciated with a payment method, to verify the transaction
+select address_id from visa_mastercard where payment_method_id = 72;
