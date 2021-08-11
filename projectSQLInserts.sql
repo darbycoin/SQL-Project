@@ -479,8 +479,8 @@ INSERT INTO `account_payment` (`account_id`,`payment_method_id`) VALUES (39,55);
 INSERT INTO `account_payment` (`account_id`,`payment_method_id`) VALUES (40,74);
 
 #21 rows for "subcategory" table
-INSERT INTO subcategory (category_id, subcategory_id) VALUES (1,1);
 INSERT INTO subcategory (category_id, subcategory_id) VALUES (1,2);
+INSERT INTO subcategory (category_id, subcategory_id) VALUES (1,3);
 INSERT INTO subcategory (category_id, subcategory_id) VALUES (4,5);
 INSERT INTO subcategory (category_id, subcategory_id) VALUES (4,6);
 INSERT INTO subcategory (category_id, subcategory_id) VALUES (4,7);
