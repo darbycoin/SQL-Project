@@ -52,8 +52,6 @@ username varchar(20) not null unique,
 password varchar(20) not null
 );
 
-alter table account ADD FOREIGN KEY (address_id) REFERENCES address(address_id);
-
 CREATE TABLE address (
 address_id int  primary key auto_increment,
 street_number int not null,
