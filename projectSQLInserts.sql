@@ -728,7 +728,7 @@ ON address (province, country);
 
 # Selecting account_ids that meet requirements for national and/or regional shipping
 SELECT account_id from address where country = 'CA';
-select account_id from address where province IN ('QC', 'ON');
+select account_id from address where country = 'CA' AND province IN ('QC', 'ON');
 
 CREATE INDEX category_lookup
 on product_category(category_id);
@@ -748,7 +748,7 @@ CREATE INDEX account_shipping_lookup
 ON `order` (account_id, address_id);
 
 # Finding the address assosciated with an order
-SELECT address_id from `order` where account_id = 4;
+SELECT address_id, account_id from `order` where account_id = 4;
 
 CREATE INDEX payment_address_visa
 ON visa_mastercard (address_id);
