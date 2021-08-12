@@ -857,6 +857,7 @@ TO NewmanChaney, BenderLawrence, DaleYuli, CastilloIngrid;
 CREATE INDEX product_search
 ON product (product_name, size, color, style);
 
+/*TESTING QUERIES
 SELECT * from product
 where product_name LIKE'%laptop%';
 
@@ -865,58 +866,61 @@ FROM product
 WHERE size = 'L'
 AND color= 'black'
 AND style = 'regular';
+*/
 
 # Selecting orders placed between a certain time period
 CREATE INDEX order_history
 ON `order` (order_date);
 
+/*TESTING QUERIES
 SELECT account_id, order_id from `order`
 WHERE order_date BETWEEN '2020-04-08' AND '2020-12-31';
-
-# Selecting account_ids that meet requirements for national and/or regional shipping
-CREATE INDEX regional_or_national_shipping
-ON address (province, country);
-
-SELECT account_id from address 
-WHERE country = 'CA'
-AND province IN ('QC', 'ON');
+*/
 
 # Finding all product IDs of certain categories
 CREATE INDEX category_lookup
 on product_category(category_id);
 
+/*TESTING QUERIES
 SELECT product_id 
 FROM product_category 
 WHERE category_id IN (1,2,3);
+*/
 
 # Selecting the product name and ID which has low inventory
 CREATE INDEX inventory_maintenance
 ON product (inventory);
 
+/*TESTING QUERIES
 SELECT PRODUCT_NAME, PRODUCT_ID FROM PRODUCT
 WHERE INVENTORY <= 3;
+*/
 
 # Finding the address assosciated with an order
 CREATE INDEX account_shipping_lookup
 ON `order` (account_id, address_id);
 
+/*TESTING QUERIES
 SELECT * 
 FROM account 
 WHERE customer_id =
 (SELECT address_id 
 FROM `order` 
 WHERE account_id = 4);
+*/
 
 # Finding the address assosciated with a payment method
 CREATE INDEX payment_address_visa
 ON visa_mastercard (address_id);
 
+/*
 SELECT * 
 FROM account 
 WHERE customer_id =(
 SELECT address_id 
 FROM visa_mastercard 
 WHERE payment_method_id = 72);
+*/
 
 # Admin Views
 # Can select/update everything EXCEPT passwords
