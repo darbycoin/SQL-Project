@@ -918,9 +918,6 @@ SELECT address_id
 FROM visa_mastercard 
 WHERE payment_method_id = 72);
 
-
-
-
 # Admin Views
 # Can select/update everything EXCEPT passwords
 
@@ -931,32 +928,52 @@ SELECT customer_id, first_name, last_name, gender, date_of_birth, phone, usernam
 FROM `account`
 WITH CHECK OPTION;
 
+/*TESTING QUERY
+select * from admin_account;
+insert?
+update?
+*/
+
 # Can select/update everything EXCEPT card number and expiry date
 
 DROP VIEW IF EXISTS admin_visa_mastercard;
 
 CREATE VIEW admin_visa_mastercard AS
 SELECT payment_method_id, holder_name, address_id
-FROM `account`
+FROM `visa_mastercard`
 WITH CHECK OPTION;
 
-
+/*TESTING QUERY
+select * from admin_visa_mastercard;
+insert?
+update?
+*/
 
 # Customer Views
 DROP VIEW IF EXISTS customer_account;
 
 CREATE VIEW customer_account AS
-SELECT first_name, last_name, gender, phone, password
-from account
+SELECT first_name, last_name, gender, phone, `password`
+from `account`
 WITH CHECK OPTION;
 
+/*TESTING QUERY
+select * from customer_account;
+insert?
+update?
+*/
 
 DROP VIEW IF EXISTS customer_address;
 
 CREATE VIEW customer_address AS
-SELECT street_number, civic_number, street_name, city, province, country, account_id
-from address
+SELECT a.street_number, a.civic_number, a.street_name, c.city_name, c.province, co.country_name
+from address a, city c, country co
+where a.city_id = c.city_id and c.country_id = co.country_id
 WITH CHECK OPTION;
+
+/*TESTING QUERY
+select * from customer_address;
+*/
 
 DROP VIEW IF EXISTS customer_cart_item;
 
@@ -965,21 +982,39 @@ SELECT product_id, quantity
 from cart_item
 WITH CHECK OPTION;
 
+/*TESTING QUERY
+select * from customer_cart_item;
+*/
+
 DROP VIEW IF EXISTS customer_gift_card;
 
 CREATE VIEW customer_gift_card AS
 SELECT bar_code, code
 from giftcard;
 
+/*TESTING QUERY
+select * from customer_gift_card;
+*/
+
 DROP VIEW IF EXISTS customer_order;
 
 CREATE VIEW customer_order AS
-SELECT order_id, order_date, total_price;
+SELECT order_id, order_date, total_price
+from `order`;
+
+/*TESTING QUERY
+select * from customer_order;
+*/
 
 DROP VIEW IF EXISTS customer_order_detail;
 
-CREATE VIEW customer_order AS
-SELECT order_id, quantity, product_id;
+CREATE VIEW customer_order_detail AS
+SELECT order_id, quantity, product_id
+from order_detail;
+
+/*TESTING QUERY
+select * from customer_order_detail;
+*/
 
 DROP VIEW IF EXISTS customer_paypal;
 
@@ -988,6 +1023,10 @@ SELECT email_address
 from paypal
 WITH CHECK OPTION;
 
+/*TESTING QUERY
+select * from customer_paypal;
+*/
+
 DROP VIEW IF EXISTS customer_product;
 
 CREATE VIEW customer_product AS
@@ -995,11 +1034,19 @@ SELECT product_name, product_description, unit_price, color, size, style, invent
 FROM product
 WITH CHECK OPTION;
 
+/*TESTING QUERY
+select * from customer_product;
+*/
+
 DROP VIEW IF EXISTS customer_product_category;
 
 CREATE VIEW customer_product_category AS
 SELECT product_id, category_id
 FROM product_category;
+
+/*TESTING QUERY
+select * from customer_product_category;
+*/
 
 DROP VIEW IF EXISTS customer_visa_mastercard;
 
@@ -1007,6 +1054,11 @@ CREATE VIEW customer_visa_mastercard AS
 SELECT card_number, expiry_date, holder_name
 FROM visa_mastercard
 WITH CHECK OPTION;
+select * from customer_visa_mastercard;
+
+/*TESTING QUERY
+select * from customer_visa_mastercard;
+*/
 
 
 #Triggers
