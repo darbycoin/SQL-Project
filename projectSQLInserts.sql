@@ -782,47 +782,47 @@ ON mysql.ecommerce
 TO administrator;
 
 GRANT SELECT, UPDATE
-ON mysql.ecommerce.`account`
+ON ecommerce.`account`
 TO registered_customer; 
 
 GRANT SELECT, UPDATE
-ON mysql.ecommerce.`address`
+ON ecommerce.`address`
 TO registered_customer; 
 
 GRANT SELECT, INSERT, UPDATE, DELETE
-ON mysql.ecommerce.`cart_item`
+ON ecommerce.`cart_item`
 TO registered_customer; 
 
 GRANT SELECT
-ON mysql.ecommerce.`giftcard`
+ON ecommerce.`giftcard`
 TO registered_customer; 
 
 GRANT SELECT
-ON mysql.ecommerce.`order`
+ON ecommerce.`order`
 TO registered_customer; 
 
 GRANT SELECT
-ON mysql.ecommerce.`order_detail`
+ON ecommerce.`order_detail`
 TO registered_customer; 
 
 GRANT SELECT, INSERT, UPDATE, DELETE
-ON mysql.ecommerce.`paypal`
+ON ecommerce.`paypal`
 TO registered_customer; 
 
 GRANT SELECT
-ON mysql.ecommerce.`product`
+ON ecommerce.`product`
 TO registered_customer; 
 
 GRANT SELECT
-ON mysql.ecommerce.`subcategory`
+ON ecommerce.`subcategory`
 TO registered_customer; 
 
 GRANT SELECT
-ON mysql.ecommerce.`product_category`
+ON ecommerce.`product_category`
 TO registered_customer; 
 
 GRANT SELECT, INSERT, UPDATE, DELETE
-ON mysql.ecommerce.`visa_mastercard`
+ON ecommerce.`visa_mastercard`
 TO registered_customer; 
 
 #Creates users
@@ -860,7 +860,6 @@ ON product (product_name, size, color, style);
 /*TESTING QUERIES
 SELECT * from product
 where product_name LIKE'%laptop%';
-
 SELECT *
 FROM product
 WHERE size = 'L'
@@ -1062,7 +1061,6 @@ WITH CHECK OPTION;
 /*TESTING QUERY
 select * from customer_visa_mastercard;
 */
-
 
 #Triggers
 delimiter //
