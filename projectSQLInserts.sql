@@ -778,51 +778,51 @@ DROP ROLE IF EXISTS administrator, registered_customer;
 CREATE ROLE administrator, registered_customer;
 
 GRANT ALL
-ON *
+ON mysql.ecommerce
 TO administrator;
 
 GRANT SELECT, UPDATE
-ON `account`
+ON mysql.ecommerce.`account`
 TO registered_customer; 
 
 GRANT SELECT, UPDATE
-ON `address`
+ON mysql.ecommerce.`address`
 TO registered_customer; 
 
 GRANT SELECT, INSERT, UPDATE, DELETE
-ON `cart_item`
+ON mysql.ecommerce.`cart_item`
 TO registered_customer; 
 
 GRANT SELECT
-ON `giftcard`
+ON mysql.ecommerce.`giftcard`
 TO registered_customer; 
 
 GRANT SELECT
-ON `order`
+ON mysql.ecommerce.`order`
 TO registered_customer; 
 
 GRANT SELECT
-ON `order_detail`
+ON mysql.ecommerce.`order_detail`
 TO registered_customer; 
 
 GRANT SELECT, INSERT, UPDATE, DELETE
-ON `paypal`
+ON mysql.ecommerce.`paypal`
 TO registered_customer; 
 
 GRANT SELECT
-ON `product`
+ON mysql.ecommerce.`product`
 TO registered_customer; 
 
 GRANT SELECT
-ON `subcategory`
+ON mysql.ecommerce.`subcategory`
 TO registered_customer; 
 
 GRANT SELECT
-ON `product_category`
+ON mysql.ecommerce.`product_category`
 TO registered_customer; 
 
 GRANT SELECT, INSERT, UPDATE, DELETE
-ON `visa_mastercard`
+ON mysql.ecommerce.`visa_mastercard`
 TO registered_customer; 
 
 #Creates users
@@ -838,16 +838,16 @@ GRANT administrator
 TO filipem, kevind;
 
 CREATE USER NewmanChaney
-IDENTIFIED BY 'OBO30SDN9UD';
+IDENTIFIED BY '123456';
 
 CREATE USER BenderLawrence
-IDENTIFIED BY 'QON38BEE7TR';
+IDENTIFIED BY '123456';
 
 CREATE USER DaleYuli
-IDENTIFIED BY 'CEC02CDP5KP';
+IDENTIFIED BY '123456';
 
 CREATE USER CastilloIngrid
-IDENTIFIED BY 'ZFV43VVW8BS';
+IDENTIFIED BY '123456';
 
 GRANT registered_customer
 TO NewmanChaney, BenderLawrence, DaleYuli, CastilloIngrid;
