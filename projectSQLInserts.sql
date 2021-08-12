@@ -1058,7 +1058,6 @@ CREATE VIEW customer_visa_mastercard AS
 SELECT card_number, expiry_date, holder_name
 FROM visa_mastercard
 WITH CHECK OPTION;
-select * from customer_visa_mastercard;
 
 /*TESTING QUERY
 select * from customer_visa_mastercard;
