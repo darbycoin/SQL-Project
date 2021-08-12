@@ -41,7 +41,7 @@ foreign key (category_id) references category(category_id),
 foreign key (subcategory_id) references category(category_id)
 );
 
-CREATE TABLE account (
+CREATE TABLE `account` (
 customer_id int primary key auto_increment,
 first_name varchar(50) not null,
 last_name varchar(50) not null,
@@ -52,16 +52,28 @@ username varchar(20) not null unique,
 password varchar(20) not null
 );
 
+CREATE TABLE country (
+country_id int primary key auto_increment,
+country_name varchar(50)
+);
+
+CREATE TABLE city (
+city_id int primary key auto_increment,
+city_name varchar(50),
+province char(2) not null,
+country_id int not null,
+foreign key (country_id) references country (country_id)
+);
+
 CREATE TABLE address (
-address_id int  primary key auto_increment,
+address_id int primary key auto_increment,
 street_number int not null,
 civic_number int,
 street_name varchar(50) not null,
-city varchar(50) not null,
-province char(2) not null,
-country char(2) not null,
+city_id int not null,
 postal_code char(6) not null,
 account_id int not null,
+foreign key (city_id) references city (city_id),
 foreign key (account_id) references account (customer_id)
 );
 
@@ -175,47 +187,151 @@ INSERT INTO `account` (`first_name`,`last_name`,`gender`,`date_of_birth`,`phone`
 INSERT INTO `account` (`first_name`,`last_name`,`gender`,`date_of_birth`,`phone`,`username`,`password`) VALUES ("Brendan","Vargas","M","1990-08-24","5870965545","WongKelly","YTP99JDH6EA");
 INSERT INTO `account` (`first_name`,`last_name`,`gender`,`date_of_birth`,`phone`,`username`,`password`) VALUES ("Sloane","Francis","F","1971-10-15","4088364720","TurnerJaime","GNV18KYQ2WF");
 
-#40 rows for "address" table
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (299,39,"Ford","Bonnyville Municipal District","PH","MO","T3J0U0",1);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (323,82,"Faulkner","Thorold","QM","PA","I6W9L9",2);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (104,96,"Guzman","Kingston-on-Thames","JF","GE","T7G3U0",3);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (716,82,"Booker","Irricana","RW","MO","V4X8Y9",4);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (232,78,"Beasley","Melilla","MM","TA","V3V5C4",5);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (78,5,"Blair","Buner","GZ","GU","T7A7I5",6);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (883,80,"Hale","Bad Dürkheim","AB","FR","M8S3G5",7);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (148,96,"Sawyer","Merchtem","CF","NI","F9C5K5",8);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (765,62,"Jenkins","Ragogna","AW","SS","P8N6Y5",9);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (51,23,"Buck","Rizes","KK","CA","D9I6O0",10);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (115,15,"Romero","Vitrival","MI","BE","J5B5H0",11);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (809,58,"Baker","Villenave-d'Ornon","NQ","SP","C0F4G6",12);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (182,56,"Rice","Genzano di Lucania","FH","CH","V6C2L3",13);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (398,36,"Stevens","Hantes-WihŽries","XX","SN","L2F2C0",14);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (780,9,"Beard","Acoz","RQ","BR","K2M5O6",15);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (608,90,"Coleman","Bannu","NL","MO","O2I5K6",16);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (557,40,"Swanson","Westmount","WL","CO","G0Y1M1",17);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (512,24,"Ingram","Ucluelet","EZ","MA","K5L6E2",18);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (983,10,"Manning","Tuktoyaktuk","OL","BU","C0V6I7",19);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (865,97,"Anthony","Llangollen","IF","PO","S6W8X8",20);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (990,66,"Blackwell","Manukau","PQ","BA","E6H6F5",21);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (18,82,"Weeks","Maranguape","FX","LI","T1F6R0",22);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (713,71,"Carter","Baracaldo","YZ","CA","J0L8O2",23);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (63,96,"Paul","Fauglia","VQ","RE","V3D4U6",24);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (394,57,"Waters","Billings","HO","NA","V0R0J9",25);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (90,6,"Velez","Peñalolén","PF","KY","A0G8Z6",26);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (288,89,"Christian","PiŽtrebais","QY","ZI","I5Q5O4",27);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (606,18,"Mendoza","Velsk","SV","SA","H8M5B0",28);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (596,30,"Austin","Redlands","HN","BU","Y7G9K6",29);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (617,49,"Castro","Edmonton","EO","NI","C4C8B3",30);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (354,56,"House","Freire","UP","UZ","W6U7T2",31);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (112,15,"Griffith","Igboho","RQ","TH","Y5C2Q0",32);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (14,18,"Hinton","Riosucio","TX","CI","V1F2K0",33);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (318,24,"Hayden","Mores","WN","RF","V8V6Q3",34);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (560,33,"Fuller","Castelluccio Inferiore","FK","SY","Z9A1D1",35);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (547,53,"Stout","Buin","ME","NZ","M9D1P7",36);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (559,64,"Allen","Blankenberge","RK","TA","H0P4Y0",37);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (118,34,"Frank","Elsene","WF","MY","U6N5K4",38);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (799,65,"Case","Eernegem","NL","UE","L3A6K4",39);
-INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city`,`province`,`country`,`postal_code`,`account_id`) VALUES (658,72,"Merritt","Rouyn-Noranda","CB","SL","P6Y8H3",40);
+#50 rows for "country" table
+INSERT INTO `country` (`country_name`) VALUES ("Canada");
+INSERT INTO `country` (`country_name`) VALUES ("USA");
+INSERT INTO `country` (`country_name`) VALUES ("Sudan");
+INSERT INTO `country` (`country_name`) VALUES ("New Zealand");
+INSERT INTO `country` (`country_name`) VALUES ("Cyprus");
+INSERT INTO `country` (`country_name`) VALUES ("Belarus");
+INSERT INTO `country` (`country_name`) VALUES ("Solomon Islands");
+INSERT INTO `country` (`country_name`) VALUES ("Tunisia");
+INSERT INTO `country` (`country_name`) VALUES ("Honduras");
+INSERT INTO `country` (`country_name`) VALUES ("Seychelles");
+INSERT INTO `country` (`country_name`) VALUES ("Bosnia and Herzegovina");
+INSERT INTO `country` (`country_name`) VALUES ("Morocco");
+INSERT INTO `country` (`country_name`) VALUES ("Bonaire, Sint Eustatius and Saba");
+INSERT INTO `country` (`country_name`) VALUES ("Mali");
+INSERT INTO `country` (`country_name`) VALUES ("Tonga");
+INSERT INTO `country` (`country_name`) VALUES ("Norway");
+INSERT INTO `country` (`country_name`) VALUES ("Northern Mariana Islands");
+INSERT INTO `country` (`country_name`) VALUES ("France");
+INSERT INTO `country` (`country_name`) VALUES ("Cambodia");
+INSERT INTO `country` (`country_name`) VALUES ("Pakistan");
+INSERT INTO `country` (`country_name`) VALUES ("Afghanistan");
+INSERT INTO `country` (`country_name`) VALUES ("Benin");
+INSERT INTO `country` (`country_name`) VALUES ("Chile");
+INSERT INTO `country` (`country_name`) VALUES ("Isle of Man");
+INSERT INTO `country` (`country_name`) VALUES ("Latvia");
+INSERT INTO `country` (`country_name`) VALUES ("Mongolia");
+INSERT INTO `country` (`country_name`) VALUES ("Liberia");
+INSERT INTO `country` (`country_name`) VALUES ("Thailand");
+INSERT INTO `country` (`country_name`) VALUES ("Portugal");
+INSERT INTO `country` (`country_name`) VALUES ("Togo");
+INSERT INTO `country` (`country_name`) VALUES ("Malaysia");
+INSERT INTO `country` (`country_name`) VALUES ("Marshall Islands");
+INSERT INTO `country` (`country_name`) VALUES ("Saint Helena, Ascension and Tristan da Cunha");
+INSERT INTO `country` (`country_name`) VALUES ("Virgin Islands, United States");
+INSERT INTO `country` (`country_name`) VALUES ("Djibouti");
+INSERT INTO `country` (`country_name`) VALUES ("Latvia");
+INSERT INTO `country` (`country_name`) VALUES ("Estonia");
+INSERT INTO `country` (`country_name`) VALUES ("China");
+INSERT INTO `country` (`country_name`) VALUES ("Honduras");
+INSERT INTO `country` (`country_name`) VALUES ("Bouvet Island");
+INSERT INTO `country` (`country_name`) VALUES ("Burundi");
+INSERT INTO `country` (`country_name`) VALUES ("Bangladesh");
+INSERT INTO `country` (`country_name`) VALUES ("Iran");
+INSERT INTO `country` (`country_name`) VALUES ("Micronesia");
+INSERT INTO `country` (`country_name`) VALUES ("Heard Island and Mcdonald Islands");
+INSERT INTO `country` (`country_name`) VALUES ("Brunei");
+INSERT INTO `country` (`country_name`) VALUES ("Malta");
+INSERT INTO `country` (`country_name`) VALUES ("Bulgaria");
+INSERT INTO `country` (`country_name`) VALUES ("Jamaica");
+INSERT INTO `country` (`country_name`) VALUES ("Rwanda");
+
+#50 rows for "city" table
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Kumluca","KF",14);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Navadwip","TR",18);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Wolvertem","FC",26);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Peine","PF",7);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Oban","OX",10);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Ayr","FZ",47);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Villenave-d'Ornon","PZ",50);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Dokkum","NE",42);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Horsham","SY",37);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Acerra","ZB",27);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Valtournenche","CK",21);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Zwijnaarde","VJ",50);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Estevan","JW",43);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Kerkhove","UX",47);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Fort William","WS",17);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Loralai","LS",24);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Kupang","LY",17);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Norman Wells","OH",6);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Terlago","LZ",14);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Clare","OK",34);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Camerino","QV",42);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Moxhe","WP",36);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Tirupati","LR",5);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Halifax","BY",38);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Wilmont","OK",29);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Castiglione di Sicilia","QR",37);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Namyangju","TF",16);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Valenciennes","UU",30);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Beauport","ZY",18);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Tampa","FL",18);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Central Jakarta","KZ",26);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Port Hope","IL",16);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Schwechat","ZG",31);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Quilicura","QD",14);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Little Rock","CJ",46);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Vallentuna","QK",8);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Salzgitter","AH",20);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Jemeppe-sur-Sambre","YZ",31);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Castel Giorgio","LB",24);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Radom","QS",2);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Tuscaloosa","OS",19);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Lisciano Niccone","FL",23);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Kanchipuram","FR",2);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Maintal","LL",39);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Nives","ML",41);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("GomzŽ-Andoumont","DA",20);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Çeşme","ZR",16);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Porto Cesareo","BP",41);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Melton Mowbray","CU",46);
+INSERT INTO `city` (`city_name`,`province`,`country_id`) VALUES ("Harrisburg","US",38);
+
+#50 rows for "address" table
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (123,18,"Moody",32,"C7O1B8",1);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (860,51,"Sandoval",33,"Z6P2G8",2);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (569,61,"Frost",46,"C3W6X6",3);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (727,99,"Cherry",31,"M4P1B2",4);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (578,59,"Haynes",13,"K0M5S3",5);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (270,67,"David",36,"Y8I7J9",6);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (858,83,"Holland",1,"B4W4M5",7);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (141,29,"Brown",2,"J3P6Y5",8);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (849,88,"Miranda",15,"H7E3B4",9);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (372,39,"Valdez",31,"P2H1G0",10);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (138,28,"Benton",23,"D9A6L2",11);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (404,99,"Jacobs",36,"S9T4C0",12);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (204,15,"Cooley",39,"Y7Q8V2",13);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (551,10,"Nichols",44,"A2Q7A2",14);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (112,80,"Mooney",35,"M4N5J6",15);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (568,51,"Burnett",2,"B3Q1F9",16);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (403,99,"Riggs",19,"V3C5C8",17);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (807,69,"Osborn",6,"Z2Z6W1",18);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (366,39,"Lane",20,"D9D6C6",19);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (764,57,"Trevino",29,"R0Q1T1",20);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (994,56,"Hogan",28,"X7E5J0",21);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (584,82,"Guerrero",28,"J9S7L3",22);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (339,40,"Bolton",19,"X0R3Q7",23);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (918,58,"Day",30,"W0N2S5",24);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (500,17,"Rios",49,"V1E0C3",25);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (714,3,"Christian",48,"W3J7N7",26);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (663,5,"Kelley",31,"X8E2P6",27);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (654,13,"Phelps",17,"T1A4U4",28);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (150,10,"Peters",50,"J1V5O7",29);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (794,38,"Mueller",14,"C8Q8O8",30);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (817,45,"Robbins",42,"O1Q5F2",31);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (622,39,"Talley",28,"V1F2W4",32);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (363,75,"Tyson",35,"K5R1H3",33);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (976,9,"Mckenzie",14,"W7E7O1",34);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (235,31,"Mcbride",1,"L0J8H4",35);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (735,41,"Ramsey",34,"E6T5B7",36);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (573,79,"Gallagher",27,"A8U0Z9",37);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (579,44,"Ingram",3,"G6Q0O2",38);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (494,2,"Haney",45,"W2G7E1",39);
+INSERT INTO `address` (`street_number`,`civic_number`,`street_name`,`city_id`,`postal_code`,`account_id`) VALUES (958,75,"Sanford",47,"F8K8U6",40);
 
 #20 rows for "category" table
 INSERT INTO `category` (category_name) VALUES ('Books');
