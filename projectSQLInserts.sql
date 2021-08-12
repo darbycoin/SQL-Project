@@ -778,7 +778,7 @@ DROP ROLE IF EXISTS administrator, registered_customer;
 CREATE ROLE administrator, registered_customer;
 
 GRANT ALL
-ON mysql.ecommerce
+ON *
 TO administrator;
 
 GRANT SELECT, UPDATE
@@ -837,6 +837,9 @@ IDENTIFIED BY '123456';
 GRANT administrator
 TO filipem, kevind;
 
+SET DEFAULT ROLE administrator
+to filipem, kevind;
+
 CREATE USER NewmanChaney
 IDENTIFIED BY '123456';
 
@@ -851,6 +854,9 @@ IDENTIFIED BY '123456';
 
 GRANT registered_customer
 TO NewmanChaney, BenderLawrence, DaleYuli, CastilloIngrid;
+
+SET DEFAULT ROLE registered_customer
+to NewmanChaney, BenderLawrence, DaleYuli, CastilloIngrid;
 
 # Indexes
 # Product look up index
