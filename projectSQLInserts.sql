@@ -939,8 +939,6 @@ WITH CHECK OPTION;
 
 /*TESTING QUERY
 select * from admin_account;
-insert?
-update?
 */
 
 # Can select/update everything EXCEPT card number and expiry date
@@ -954,8 +952,6 @@ WITH CHECK OPTION;
 
 /*TESTING QUERY
 select * from admin_visa_mastercard;
-insert?
-update?
 */
 
 # Customer Views
@@ -968,8 +964,6 @@ WITH CHECK OPTION;
 
 /*TESTING QUERY
 select * from customer_account;
-insert?
-update?
 */
 
 DROP VIEW IF EXISTS customer_address;
